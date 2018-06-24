@@ -1,5 +1,5 @@
 '''
-This code is taken from the MIT course on edx (6.00.2x)
+This code is inspired from the MIT course on edx (6.00.2x)
 This code generates all the subsets of a given array of
 objects in complexity of O(n^2). 
 - makeSubsets_i in iterative implementation

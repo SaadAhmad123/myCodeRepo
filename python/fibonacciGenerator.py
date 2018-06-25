@@ -15,5 +15,5 @@ def genFib():
 #end
 
 f = genFib();
-for i in range(0,10000):
+for i in range(0,6):
     print f.next();

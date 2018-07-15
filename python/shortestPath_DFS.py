@@ -1,3 +1,21 @@
+'''
+    Use this function to find the 
+    shortest path in a tree.
+
+    INPUTS:
+        - graph: graph object
+        - start: name of the starting node
+        - end: name of ending node
+        - toPrint: boolen by default it is false.
+
+    Usage:
+        The graph must be the same one in the graph.py.
+'''
+
+def getShortestPath(graph, start, end, toPrint = False):
+    return dfs(graph, graph.getNode(start), graph.getNode(end), [], None, toPrint);
+
+
 def printPath(path):
     pathString = "";
     for nodes in path:
@@ -20,6 +38,3 @@ def dfs(graph, start, end, path, shortest, toPrint):
         elif toPrint:
             print ("Already visited ", str(node))
     return shortest;
-
-def getShortestPath(graph, start, end, toPrint = False):
-    return dfs(graph, graph.getNode(start), graph.getNode(end), [], None, toPrint);

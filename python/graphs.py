@@ -143,7 +143,7 @@ def getAdjecentSwaped(string):
     yield string[1] + string[0] + string[2];
     yield string[0] + string[2] + string[1];
 
-def main ():
+def main1 ():
     nodes, graph = buildGraph1(Digraph);
     for n in nodes:
         swaped = getAdjecentSwaped(n.getName());
@@ -151,8 +151,47 @@ def main ():
             for sn in nodes:
                 if s == sn.getName():
                     graph.addEdge(Edge(graph.getNode(n.getName()), graph.getNode(sn.getName())));
+    print graph
     edges =  graph.childernOf(nodes[0]);
     for e in edges:
         print e.getName();
+    for ns in nodes:
+        for ne in nodes:
+            path = getShortestPath(graph, ns.getName(), ne.getName());
+            printPath(path);
+    
 
-main();
+
+def printPath(path):
+    pathString = "";
+    for nodes in path:
+        pathString += str(nodes) + "->";
+    pathString = pathString[0:len(pathString)-2];
+    print pathString;
+
+def dfs(graph, start, end, path, shortest, toPrint):
+    path = path + [start];
+    if toPrint:
+        printPath(path);
+    if start == end:
+        return path;
+    for node in graph.childernOf(start):
+        if node not in path:
+            if shortest == None or len(path) < len(shortest):
+                newPath = dfs(graph, node, end, path, shortest, toPrint);
+                if newPath != None:
+                    shortest = newPath;
+        elif toPrint:
+            print ("Already visited ", str(node))
+    return shortest;
+
+def getShortestPath(graph, start, end, toPrint = False):
+    return dfs(graph, graph.getNode(start), graph.getNode(end), [], None, toPrint);
+
+
+def main():
+    g = buildGraph1(Digraph);
+    print str(g);
+    #for nodes in getShortestPath(g, "Boston", "Phoenix", True):
+    #    print nodes;
+main1();
